@@ -1,0 +1,196 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box
+}
+
+:root{
+    --borderColor: rgb(0, 132, 255);
+    --faceColor: rgba(255, 255, 255, 0);
+    --speed: 1s;
+}
+
+body{
+    width: 100vw; height: 100vh;
+    background-color: rgb(231, 231, 231);
+    overflow-y: hidden; overflow-x: hidden;
+}
+
+#bot{
+    top: -200px; left: -200px;     
+    width: 200px; height: 200px;
+    display: flex;
+    justify-content: center; align-items: center;
+    transform-style: preserve-3d;
+    transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg) translateZ(-200px);
+    animation: move 15s linear infinite;
+    position: relative
+}
+
+div{
+    border-radius: 10px;
+}
+
+.face{
+    background-color: var(--faceColor);
+    box-shadow: 0 0 7px var(--borderColor);
+    border: 1px solid var(--borderColor);
+    transform-style: preserve-3d;
+    position: absolute;
+    width: var(--w); height: var(--h);
+    transform: rotateX(var(--rX)) rotateY(var(--rY)) rotateZ(var(--rZ))  translateX(var(--tX)) translateY(var(--tY)) translateZ(var(--tZ));
+}
+
+#legs, #arms{
+    transform-style: preserve-3d;
+    transform: translateX(25px)
+}
+
+.leg, .arm{
+    width: 50px; height: 50px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateY(-50px) translateZ(75px)
+}
+
+#leg{
+    animation: walk var(--speed) linear infinite
+}
+
+#leg2{
+    animation: walk2 var(--speed) linear infinite
+}
+
+#arms{
+    transform: translateZ(150px) translateX(-25px)
+}
+
+#arm{
+    transform: translateY(50px) translateZ(75px) rotateY(-45deg);
+    animation: move-arm var(--speed) linear infinite
+}
+
+#arm2{
+    transform: translateY(-150px) translateZ(75px) rotateY(-45deg);
+    animation: move-arm2 var(--speed) linear infinite;;
+}
+
+.body{
+    width: 50px; height: 100px;
+    transform-style: preserve-3d;
+    transform: translateZ(150px) translateX(-75px);
+    position: relative
+}
+
+.head{
+    width: 75px; height: 75px;
+    transform-style: preserve-3d;
+    transform: translateZ(310px) translateX(-112.5px);
+    animation: spin-head 5s linear infinite;
+    position: relative;
+}
+
+#lazer{
+    width: 5000px; height: 2px;
+    opacity: 1;
+    color: rgb(255, 0, 0);
+    box-shadow: 0 0 7px rgb(255, 0, 0);
+    transform: rotateY(90deg) translateZ(-2480px) translateX(-2500px) translateY(10px);
+    animation: on-offLazer .5s ease-in-out infinite
+}
+
+@keyframes move{
+    0%{
+        top: -200px; left: -200px;
+        transform: rotateX(60deg) rotateY(0deg) rotateZ(47deg) translateZ(-200px)    
+    }
+
+    49.99%{
+       left: 99.99vw; top: 99.99vh;
+       transform: rotateX(60deg) rotateY(0deg) rotateZ(47deg) translateZ(-200px)
+    }
+
+    50%{
+       left: 100vw; top: 100vh;
+       transform: rotateX(60deg) rotateY(0deg) rotateZ(227deg) translateZ(-200px)
+    }
+
+    100%{
+        top: -200px; left: -200px;
+        transform: rotateX(60deg) rotateY(0deg) rotateZ(257deg) translateZ(-200px)
+    }
+}
+
+@keyframes walk{
+    0%{
+        transform: translateX(50px) translateY(-50px) translateZ(100px) rotateY(-45deg)
+    }
+    50%{
+        transform: translateX(-50px) translateY(-50px) translateZ(75px) rotateY(45deg)
+    }
+    100%{
+        transform: translateX(50px) translateY(-50px) translateZ(100px) rotateY(-45deg)
+    }
+}
+
+@keyframes walk2{
+    0%{
+        transform: translateX(-50px) translateY(-50px) translateZ(100px) rotateY(45deg)
+    }
+    50%{
+        transform: translateX(50px) translateY(-50px) translateZ(75px) rotateY(-45deg)
+    }
+    100%{
+        transform: translateX(-50px) translateY(-50px) translateZ(100px) rotateY(45deg)
+    }
+}
+
+@keyframes on-offLazer{
+    0%{
+        opacity: 0
+    }
+    50%{
+        dopacity: 1
+    }
+    100%{
+        display: 1
+    }
+}
+
+@keyframes move-arm{
+    0%{
+        transform: translateX(50px) translateY(50px) translateZ(100px) rotateY(-45deg)
+    }
+    50%{
+        transform: translateX(-50px) translateY(50px) translateZ(75px) rotateY(45deg)
+    }
+    100%{
+        transform: translateX(50px) translateY(50px) translateZ(100px) rotateY(-45deg)
+    }
+}
+
+@keyframes move-arm2{
+    0%{
+        transform: translateX(-50px) translateY(-150px) translateZ(100px) rotateY(45deg)
+    }
+    50%{
+        transform: translateX(50px) translateY(-150px) translateZ(75px) rotateY(-45deg)
+    }
+    100%{
+        transform: translateX(-50px) translateY(-150px) translateZ(100px) rotateY(45deg)
+    }
+}
+
+@keyframes spin-head{
+    0%{
+        transform: translateZ(310px) translateX(-112.5px) rotate(-30deg)
+    }
+
+    50%{
+        transform: translateZ(310px) translateX(-112.5px) rotate(30deg)
+    }
+
+    100%{
+        transform: translateZ(310px) translateX(-112.5px) rotate(-30deg)
+    }
+}
